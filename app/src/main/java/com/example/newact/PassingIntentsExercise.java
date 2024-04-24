@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 
 public class PassingIntentsExercise extends AppCompatActivity {
@@ -28,10 +29,13 @@ public class PassingIntentsExercise extends AppCompatActivity {
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items2);
         dropdown2.setAdapter(adapter2);
 
+
+
         startProgram();
     }
 
     void startProgram(){
+
             EditText[] edi = new EditText[6];
 
             for(int i =0; i<11; i++) {
@@ -50,6 +54,12 @@ public class PassingIntentsExercise extends AppCompatActivity {
                 }
             }
 
+        RadioButton rMale = findViewById(R.id.rMale);
+        RadioButton rFem = findViewById(R.id.rFemale);
+        RadioButton roth = findViewById(R.id.rOthers);
+
+
+
             Button sub = (Button) findViewById(R.id.Submit);
             sub.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -61,24 +71,38 @@ public class PassingIntentsExercise extends AppCompatActivity {
                     String MLName = edi[3].getText().toString();
                     String FrFName = edi[4].getText().toString();
                     String FrLName = edi[5].getText().toString();
+                    String eAddress = edi[6].getText().toString();
+                    String bDate = edi[7].getText().toString();
+                    String pNumber = edi[8].getText().toString();
+                    String pEmerNumber = edi[9].getText().toString();
+                    String emailAdd = edi[10].getText().toString();
+
+
 
                     String gender;
                     if(rMale.isChecked())
-                        gender "Male";
+                        gender = "Male";
                     else if (rFem.isChecked())
                         gender = "Female";
                     else if (roth.isChecked())
                         gender = "Others";
                     else
-                        gender "Unknown";
+                        gender = "Unknown";
 
-                    String bDate = eBDate.getText().toString();
-                    String pNumber = eNum.getText().toString();
-                    String emailAdd = eMail.getText().toString();
-                    Intent intent = new Intent( packageContext: PassingIntentsExercise. this, PassingIntentsExercise2.class); intent.putExtra( name: "fname_key", fName);
-                    intent.putExtra( name: "gender_key", gender); intent.putExtra( name: "pnum_key", pNumber);
+                    Intent intent = new Intent(  PassingIntentsExercise. this, PassingIntentsExercise2.class);
+                    intent.putExtra( "key1", fName);
+                    intent.putExtra( "key2", lName);
+                    intent.putExtra( "key3", MFName);
+                    intent.putExtra( "key4", MLName);
+                    intent.putExtra( "key5", FrFName);
+                    intent.putExtra( "key6", FrLName);
+                    intent.putExtra( "key7", eAddress);
+                    intent.putExtra( "key8", gender);
+                    intent.putExtra( "key9",bDate);
+                    intent.putExtra( "key10", emailAdd);
+                    intent.putExtra( "key11", pNumber);
+                    intent.putExtra( "key12", pEmerNumber);
                     startActivity(intent);
-                    intent.putExtra( name: "Iname_key", lName); intent.putExtra( name: "bdate_key",bDate); intent.putExtra( name: "eadd_key", emailAdd);
                 }
             });
     }
